@@ -1,0 +1,34 @@
+{
+  "files": {
+    "main.css": "/reto-rimac/static/css/main.f3af39ea.css",
+    "main.js": "/reto-rimac/static/js/main.c973f373.js",
+    "static/media/hero-family-responsive.svg": "/reto-rimac/static/media/hero-family-responsive.1a9ffc8b981c59af88f0727ced3b0b3e.svg",
+    "static/media/hero-family.svg": "/reto-rimac/static/media/hero-family.24631fdf9d3eaf2a945639ae551022c7.svg",
+    "static/media/brsonoma-semibold.woff": "/reto-rimac/static/media/brsonoma-semibold.ef34ca818c81989b4b57.woff",
+    "static/media/brsonoma-bold.woff": "/reto-rimac/static/media/brsonoma-bold.2ff8ce3b55f9fe3085f3.woff",
+    "static/media/brsonoma-regular.woff": "/reto-rimac/static/media/brsonoma-regular.49b1aa375bbf331d1401.woff",
+    "static/media/brsonoma-semibold.woff2": "/reto-rimac/static/media/brsonoma-semibold.18e7390fcb69d1592548.woff2",
+    "static/media/brsonoma-bold.woff2": "/reto-rimac/static/media/brsonoma-bold.fac19a5fda35bb3b11fb.woff2",
+    "static/media/brsonoma-regular.woff2": "/reto-rimac/static/media/brsonoma-regular.b243892eb7e6198e0126.woff2",
+    "static/media/icon-add-user.svg": "/reto-rimac/static/media/icon-add-user.554beafb02babf77fecf000a6846c717.svg",
+    "static/media/logo-light.svg": "/reto-rimac/static/media/logo-light.a47e826f9b1258ed7406682d19d0a2e9.svg",
+    "static/media/logo-rimac.svg": "/reto-rimac/static/media/logo-rimac.12168261fe8e924bf00f5fb3fffc2a11.svg",
+    "static/media/icon-protection.svg": "/reto-rimac/static/media/icon-protection.0e23ab16e35d053e6b2e4ece7b4664f8.svg",
+    "static/media/icon-home.svg": "/reto-rimac/static/media/icon-home.b00b198ef90fb55a83df24e7fec4ed89.svg",
+    "static/media/bg-right.svg": "/reto-rimac/static/media/bg-right.f032590d6401528b1da6e569b22c294d.svg",
+    "static/media/icon-clinic.svg": "/reto-rimac/static/media/icon-clinic.aff93b9fef0a3b1b44fe76a4b8a17350.svg",
+    "static/media/bg-left.svg": "/reto-rimac/static/media/bg-left.580a694bf66091d111e75e55028601a7.svg",
+    "static/media/phone.svg": "/reto-rimac/static/media/phone.cc5774b93288d455308ace58cb530e9b.svg",
+    "static/media/icon-family.svg": "/reto-rimac/static/media/icon-family.ea7ae3eb80537dfcf115ee868f2d56ea.svg",
+    "index.html": "/reto-rimac/index.html",
+    "static/media/icon-back-gray.svg": "/reto-rimac/static/media/icon-back-gray.7e0416442e16b9c463089451b73a3905.svg",
+    "static/media/icon-back.svg": "/reto-rimac/static/media/icon-back.753d18eb51bbc34abc9fa5cc139a3373.svg",
+    "static/media/icon-arrow.svg": "/reto-rimac/static/media/icon-arrow.4b7a519ad6fdcf1db4864bfb26621b80.svg",
+    "main.f3af39ea.css.map": "/reto-rimac/static/css/main.f3af39ea.css.map",
+    "main.c973f373.js.map": "/reto-rimac/static/js/main.c973f373.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f3af39ea.css",
+    "static/js/main.c973f373.js"
+  ]
+}
