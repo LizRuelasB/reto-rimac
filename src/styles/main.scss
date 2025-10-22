@@ -1,0 +1,36 @@
+@import 'grid';
+@import 'fonts';
+
+* {
+  font-family: 'BRSonoma-Regular', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
+}
+
+body {
+  color: #03050F;
+  background-color: #F8F9FF;
+}
+
+$tag-gradient-start: #00F4E2;
+$tag-gradient-end: #00FF7F;
+.tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background-image: linear-gradient(86.01deg, $tag-gradient-start 0%, $tag-gradient-end 100%);
+  font-family: 'BRSonoma-Bold', sans-serif;
+  color: #03050F;
+  font-size: 12px;
+  line-height: 16px;
+
+
+
+  @media (min-width: 768px) {
+    font-size: 14px;
+    padding: 4px 8px;
+  }
+}
+

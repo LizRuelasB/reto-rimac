@@ -1,0 +1,45 @@
+@mixin desktop {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    margin: auto;
+    width: 100%;
+    padding: 0px 24px;
+
+    @include desktop {
+      height: 64px;
+      max-width: 1176px;
+      padding: 0px;
+    }
+
+    &__contact {
+
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 16px;
+
+      &__text {
+        font-family: BRSonoma-SemiBold, sans-serif;
+        display: none;
+
+        @include desktop {
+          display: block;
+        }
+      }
+
+      &__logo {
+        font-family: BRSonoma-Bold, sans-serif;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+    }
+  }

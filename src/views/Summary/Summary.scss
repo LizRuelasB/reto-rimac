@@ -1,0 +1,117 @@
+$color-primary: #4F4FFF;
+@mixin desktop {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
+.summary {
+
+  &__link {
+
+    &--button {
+      display: none;
+
+      @include desktop {
+        border: none;
+      background-color: transparent;
+      color: $color-primary;
+      font-size: 18px;
+      font-family: BRSonoma-SemiBold, sans-serif;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      }
+    }
+  }
+
+  &__content {
+    max-width: 928px;
+    margin: auto;
+    margin-top: 32px;
+
+    padding: 0px 24px ;
+
+    @include desktop {
+      padding: 0px;
+       margin-top: 64px;
+    }
+
+    h1 {
+      font-family: BRSonoma-SemiBold, sans-serif;
+      font-size: 32px;
+      margin-top: 0px;
+      margin-bottom: 40px;
+      padding: 0px 20px;
+
+      @include desktop {
+      font-size: 40px;
+      padding: 0px;
+      margin-bottom: 48px;
+      
+      margin-top: 32px;
+    }
+    }
+
+    &__card {
+      box-shadow: 0px 1px 24px 0px #AEACF340;
+      padding: 24px 32px;
+      border-radius: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      background-color: #FFFFFF;
+
+      &__header {
+        border-bottom: 1px solid #D7DBF5;
+        padding-bottom: 16px;
+
+        &__title {
+          font-size: 10px;
+          line-height: 16px;
+          letter-spacing: 0.8px;
+          text-transform: uppercase;
+          
+        }
+
+        &__name {
+          display: flex;
+          gap: 12px;
+          align-items: center;
+margin-top: 8px;
+          span {
+            color: #141938;
+            font-size: 20px;
+                  font-family: BRSonoma-SemiBold, sans-serif;
+
+          }
+        }
+      }
+
+      &__info {
+        color: #141938;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        div {
+          font-size: 16px;
+          font-family: BRSonoma-SemiBold, sans-serif;
+        }
+
+        span {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+  &__steps {
+    display: none;
+@include desktop {
+  display: block;
+}
+
+  }
+}
