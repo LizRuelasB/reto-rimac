@@ -3,7 +3,7 @@ import { Header, Steps } from '../../components';
 import { REGISTRATION_STEPS, STEP_NUMBERS } from '../../constants/steps';
 import { PLAN_CONFIG, PLAN_BOLD_CONFIG } from '../../constants/plans';
 import { usePlans } from '../../hooks';
-import { useRegistration } from '../../context/RegistrationContext';
+import { useUserData, usePlanData } from '../../hooks';
 import { formatTextWithBoldString } from '../../utils/helpers';
 import { Plan, SelectedPlanData } from '../../types';
 import './Plans.scss';
@@ -17,7 +17,8 @@ import back from '../../assets/icons/icon-back.svg';
 import { PlansProps, CoverageType } from './types';
 
 const PlansRefactored: React.FC<PlansProps> = ({ onBack, onNext }) => {
-  const { userData, setPlanData } = useRegistration();
+  const { userData } = useUserData();
+  const { setPlanWithCalculations } = usePlanData();
   const { 
     filteredPlans, 
     isLoading, 
@@ -78,7 +79,7 @@ const PlansRefactored: React.FC<PlansProps> = ({ onBack, onNext }) => {
       isForSomeoneElse,
     };
 
-    setPlanData(selectedPlan);
+    setPlanWithCalculations(selectedPlan);
     onNext();
   };
 

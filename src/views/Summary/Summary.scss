@@ -1,53 +1,35 @@
-
-
-
 .summary {
 
   &__link {
 
-    &--button {
+    &__button {
       display: none;
 
       @screen lg {
         border: none;
-      background-color: transparent;
-      color: #4F4FFF;
-      font-size: 18px;
-      font-family: BRSonoma-SemiBold, sans-serif;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+        background-color: transparent;
+        color: #4F4FFF;
+        font-size: 18px;
+        font-family: BRSonoma-SemiBold, sans-serif;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
       }
     }
   }
 
   &__content {
-    max-width: 928px;
-    margin: auto;
-    margin-top: 32px;
-
-    padding: 0px 24px ;
-
-    @screen lg {
-      padding: 0px;
-       margin-top: 64px;
-    }
 
     h1 {
       font-family: BRSonoma-SemiBold, sans-serif;
       font-size: 32px;
-      margin-top: 0px;
-      margin-bottom: 40px;
-      padding: 0px 20px;
+
 
       @screen lg {
-      font-size: 40px;
-      padding: 0px;
-      margin-bottom: 48px;
-      
-      margin-top: 32px;
-    }
+        font-size: 40px;
+
+      }
     }
 
     &__card {
@@ -68,18 +50,19 @@
           line-height: 16px;
           letter-spacing: 0.8px;
           text-transform: uppercase;
-          
+
         }
 
         &__name {
           display: flex;
           gap: 12px;
           align-items: center;
-margin-top: 8px;
+          margin-top: 8px;
+
           span {
             color: #141938;
             font-size: 20px;
-                  font-family: BRSonoma-SemiBold, sans-serif;
+            font-family: BRSonoma-SemiBold, sans-serif;
 
           }
         }
@@ -105,9 +88,10 @@ margin-top: 8px;
 
   &__steps {
     display: none;
-@screen lg {
-  display: block;
-}
+
+    @screen lg {
+      display: block;
+    }
 
   }
 }

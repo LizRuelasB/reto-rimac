@@ -2,14 +2,16 @@ import React from 'react';
 import { Header, Steps } from '../../components';
 import { REGISTRATION_STEPS, STEP_NUMBERS } from '../../constants/steps';
 import './Summary.scss'
-import { useRegistration } from '../../context/RegistrationContext';
+import { useUserData, usePlanData, useRegistrationState } from '../../hooks';
 
 import family from '../../assets/icons/icon-family.svg';
 import back from '../../assets/icons/icon-back.svg';
 import { SummaryProps } from './types';
 
 const Summary: React.FC<SummaryProps> = ({onBack}) => {
-  const { userData, planData, initialFormData } = useRegistration();
+  const { userData } = useUserData();
+  const { planData } = usePlanData();
+  const { initialFormData } = useRegistrationState();
 
   if (!userData || !planData || !initialFormData) {
     return null;
@@ -23,18 +25,23 @@ const Summary: React.FC<SummaryProps> = ({onBack}) => {
       </div>
 
 
-    <div className="summary">
+    <div className="summary max-w-7xl px-6 ">
+
+      <div className="hidden lg:block pt-[64px]">
+        <button
+          type="button"
+          onClick={onBack}
+          className="summary__link__button"
+        >
+          <img src={back} alt="" /> Volver
+        </button>
+      </div>
+      
+
 
       <div className='summary__content'>
-        <button
-            type="button"
-            onClick={onBack}
-            className="summary__link--button"
-          >
-            <img src={back} alt="" /> Volver
-          </button>
-
-        <h1>Resumen del seguro </h1>
+        
+        <h1 className='text-center lg:text-left pt-8 pb-10 lg:pb-12'>Resumen del seguro </h1>
 
         <div className='summary__content__card'>
           <div className='summary__content__card__header'>

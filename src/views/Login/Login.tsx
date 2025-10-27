@@ -14,7 +14,7 @@ const Login: React.FC<LoginProps> = ({ onNext }) => {
     <div className='relative min-h-screen flex flex-col'>
       <img className='absolute bottom-0 left-0 -z-10 w-auto h-auto' src={bgLeft} alt="" />
       <Header></Header>
-      <div className='max-w-7xl mx-auto px-6 gap-3 lg:grid-cols-12 lg:grid pb-[64px] flex-grow'>
+      <div className='max-w-7xl  px-6 gap-3 lg:grid-cols-12 lg:grid pb-[64px] flex-grow'>
 
 
         <div className='hidden lg:block lg:col-span-6 lg:py-8'>

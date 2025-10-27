@@ -26,7 +26,7 @@ export const useRegistrationPersistence = () => {
         }
       }
     } catch (error) {
-      console.error('Error loading registration data from storage:', error);
+      console.log(error)
     }
   }, [actions]);
 

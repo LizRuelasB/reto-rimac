@@ -13,7 +13,6 @@ export const plansService = {
       const data = await apiClient.get<PlansResponse>(API_ENDPOINTS.PLANS);
       return data.list || [];
     } catch (error) {
-      console.error('Error in plansService.fetchPlans:', error);
       throw new Error(API_ERROR_MESSAGES.PLANS_FETCH_ERROR);
     }
   },

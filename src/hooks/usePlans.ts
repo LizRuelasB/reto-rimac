@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
 import { plansService } from '../services/api/plans.service';
+import { usePlanCalculations } from './usePlanCalculations';
 import { Plan } from '../types';
 
 interface UsePlansReturn {
@@ -13,11 +14,13 @@ interface UsePlansReturn {
   clearError: () => void;
 }
 
-export const usePlans = (): UsePlansReturn => {
+export const usePlans = (userAge?: number): UsePlansReturn => {
   const [plans, setPlans] = useState<Plan[]>([]);
   const [filteredPlans, setFilteredPlans] = useState<Plan[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  
+  const { filterPlansByAge: filterByAge, calculateFinalPrice } = usePlanCalculations(userAge);
 
   const fetchPlans = useCallback(async () => {
     setIsLoading(true);
@@ -36,13 +39,13 @@ export const usePlans = (): UsePlansReturn => {
   }, []);
 
   const filterPlansByAge = useCallback((userAge: number) => {
-    const filtered = plansService.filterPlansByAge(plans, userAge);
+    const filtered = filterByAge(plans, userAge);
     setFilteredPlans(filtered);
-  }, [plans]);
+  }, [plans, filterByAge]);
 
   const calculateDiscountedPrice = useCallback((originalPrice: number, isForSomeoneElse: boolean) => {
-    return plansService.calculateDiscountedPrice(originalPrice, isForSomeoneElse);
-  }, []);
+    return calculateFinalPrice(originalPrice, isForSomeoneElse, userAge);
+  }, [calculateFinalPrice, userAge]);
 
   const clearError = useCallback(() => {
     setError(null);

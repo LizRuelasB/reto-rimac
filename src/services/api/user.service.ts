@@ -8,7 +8,6 @@ export const userService = {
       const data = await apiClient.get<UserAPIData>(API_ENDPOINTS.USER);
       return data;
     } catch (error) {
-      console.error('Error in userService.fetchUserData:', error);
       throw new Error(API_ERROR_MESSAGES.USER_FETCH_ERROR);
     }
   },

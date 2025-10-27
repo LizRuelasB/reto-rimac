@@ -11,7 +11,6 @@ export const getUserData = async (): Promise<UserAPIData> => {
     const data: UserAPIData = await response.json();
     return data;
   } catch (error) {
-    console.error('Error en getUserData:', error);
     throw new Error('Fallo en la comunicación con el API de usuario.');
   }
 };
@@ -25,7 +24,6 @@ export const getPlans = async (): Promise<Plan[]> => {
     const data: { list: Plan[] } = await response.json();
     return data.list;
   } catch (error) {
-    console.error('Error en getPlans:', error);
     throw new Error('Fallo en la comunicación con el API de planes.');
   }
 };

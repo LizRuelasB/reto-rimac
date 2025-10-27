@@ -2,6 +2,7 @@ import React, { ChangeEvent, useState } from 'react';
 import { UserData } from '../../../../types';
 import { getUserData } from '../../../../utils/api';
 import { useRegistration } from '../../../../context/RegistrationContext';
+import { useFormValidation, useLoadingState, useErrorHandler } from '../../../../hooks';
 import { CustomFilledInput } from '../../../../components/ui/CustomFilledInput/CustomFilledInput';
 import './RegistrationForm.scss'
 import { FormData, FormErrors, RegistrationFormProps } from './types';
@@ -21,6 +22,10 @@ const calculateAge = (birthDay: string): number => {
 
 const RegistrationForm: React.FC<RegistrationFormProps> = ({ onNext }) => {
   const { setUserDataAndInitialForm } = useRegistration();
+  const { errors, validateLoginForm, clearErrors } = useFormValidation();
+  const { isLoading, withLoading } = useLoadingState();
+  const { error: apiError, handleError, clearError } = useErrorHandler();
+  
   const [formData, setFormData] = useState<FormData>({
     documentType: 'DNI',
     documentNumber: '',
@@ -36,7 +41,6 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ onNext }) => {
       acceptTerms: false,
       apiError: '',
   });
-  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
@@ -51,6 +55,10 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ onNext }) => {
         } else if (name === 'phone') {
             newValue = numericValue.slice(0, 9); 
         }
+    }
+    
+    if (name === 'documentNumber' || name === 'phone') {
+      clearErrors();
     }
     
     setFormErrors(prev => ({
@@ -70,24 +78,21 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ onNext }) => {
   
 
   const validateForm = (): boolean => {
-      let isValid = true;
+      const isValidForm = validateLoginForm({
+        documentType: formData.documentType,
+        documentNumber: formData.documentNumber,
+        phone: formData.phone,
+      });
+      
       const newErrors: FormErrors = {
-          documentNumber: '',
-          phone: '',
+          documentNumber: errors.documentNumber || '',
+          phone: errors.phone || '',
           acceptPrivacy: false,
           acceptTerms: false,
           apiError: '',
       };
       
-      if (formData.documentNumber.length !== 8) {
-          newErrors.documentNumber = 'El documento ingresado no es válido';
-          isValid = false;
-      }
-      
-      if (formData.phone.length !== 9) {
-          newErrors.phone = 'El celular ingresado no es válido';
-          isValid = false;
-      }
+      let isValid = isValidForm;
       
       if (!formData.acceptPrivacy) {
           newErrors.acceptPrivacy = true;
@@ -105,6 +110,7 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ onNext }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    clearError();
     setFormErrors({ 
         documentNumber: '', 
         phone: '', 
@@ -117,39 +123,36 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ onNext }) => {
         return; 
     }
     
-    setIsLoading(true);
+    await withLoading(async () => {
+      try {
+        const apiUserData = await getUserData();
+        const age = calculateAge(apiUserData.birthDay);
 
-    try {
-      const apiUserData = await getUserData();
-      const age = calculateAge(apiUserData.birthDay);
+        const completeUserData: UserData = {
+          ...apiUserData,
+          documentType: formData.documentType,
+          documentNumber: formData.documentNumber,
+          phone: formData.phone,
+          age: age,
+        };
 
-      const completeUserData: UserData = {
-        ...apiUserData,
-        documentType: formData.documentType,
-        documentNumber: formData.documentNumber,
-        phone: formData.phone,
-        age: age,
-      };
+        setUserDataAndInitialForm(completeUserData, {
+          documentType: formData.documentType,
+          documentNumber: formData.documentNumber,
+          phone: formData.phone,
+        });
 
-      setUserDataAndInitialForm(completeUserData, {
-        documentType: formData.documentType,
-        documentNumber: formData.documentNumber,
-        phone: formData.phone,
-      });
+        onNext();
 
-      console.log(completeUserData)
-
-      onNext();
-
-    } catch (error: any) {
-      setFormErrors(prev => ({
-          ...prev, 
-          apiError: error.message || 'Ocurrió un error al obtener los datos del usuario.',
-      }));
-      console.error(error);
-    } finally {
-      setIsLoading(false);
-    }
+      } catch (error: any) {
+        const errorMessage = error.message || 'Ocurrió un error al obtener los datos del usuario.';
+        handleError(errorMessage);
+        setFormErrors(prev => ({
+            ...prev, 
+            apiError: errorMessage,
+        }));
+      }
+    });
   };
 
 
@@ -252,9 +255,9 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ onNext }) => {
         {isLoading ? 'Cargando...' : 'Cotiza aquí'}
       </button>
 
-      {formErrors.apiError && (
+      {(formErrors.apiError || apiError) && (
         <div className="registration-form__error-message" role="alert">
-          {formErrors.apiError}
+          {formErrors.apiError || apiError}
         </div>
       )}
 
