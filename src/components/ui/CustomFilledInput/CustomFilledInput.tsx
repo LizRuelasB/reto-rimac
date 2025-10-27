@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, FocusEvent, SelectHTMLAttributes, InputHTMLAttributes } from 'react';
+import React, { useState, FocusEvent, SelectHTMLAttributes, InputHTMLAttributes } from 'react';
 import arrow from '../../../assets/icons/icon-arrow.svg'; 
 import './CustomFilledInput.scss'
 import { CustomInputProps } from './types';
