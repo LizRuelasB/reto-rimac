@@ -1,9 +1,5 @@
-$color-primary: #4F4FFF;
-@mixin desktop {
-  @media (min-width: 768px) {
-    @content;
-  }
-}
+
+
 
 .summary {
 
@@ -12,10 +8,10 @@ $color-primary: #4F4FFF;
     &--button {
       display: none;
 
-      @include desktop {
+      @screen lg {
         border: none;
       background-color: transparent;
-      color: $color-primary;
+      color: #4F4FFF;
       font-size: 18px;
       font-family: BRSonoma-SemiBold, sans-serif;
       cursor: pointer;
@@ -33,7 +29,7 @@ $color-primary: #4F4FFF;
 
     padding: 0px 24px ;
 
-    @include desktop {
+    @screen lg {
       padding: 0px;
        margin-top: 64px;
     }
@@ -45,7 +41,7 @@ $color-primary: #4F4FFF;
       margin-bottom: 40px;
       padding: 0px 20px;
 
-      @include desktop {
+      @screen lg {
       font-size: 40px;
       padding: 0px;
       margin-bottom: 48px;
@@ -109,7 +105,7 @@ margin-top: 8px;
 
   &__steps {
     display: none;
-@include desktop {
+@screen lg {
   display: block;
 }
 

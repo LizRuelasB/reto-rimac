@@ -1,11 +1,8 @@
 import { useEffect, useCallback } from 'react';
 import { useRegistration } from '../context/RegistrationContext';
 
-// Custom hook para persistir datos en localStorage
 export const useRegistrationPersistence = () => {
   const { state, actions } = useRegistration();
-
-  // Guardar en localStorage cuando cambie el estado
   useEffect(() => {
     const registrationData = {
       userData: state.userData,
@@ -16,7 +13,6 @@ export const useRegistrationPersistence = () => {
     localStorage.setItem('registration-data', JSON.stringify(registrationData));
   }, [state.userData, state.planData, state.initialFormData]);
 
-  // Cargar datos desde localStorage al inicializar
   const loadFromStorage = useCallback(() => {
     try {
       const stored = localStorage.getItem('registration-data');
@@ -34,7 +30,6 @@ export const useRegistrationPersistence = () => {
     }
   }, [actions]);
 
-  // Limpiar localStorage
   const clearStorage = useCallback(() => {
     localStorage.removeItem('registration-data');
     actions.resetRegistration();

@@ -1,11 +1,8 @@
 import { useState, useCallback, useEffect, useMemo } from 'react';
 
-// Custom hook para manejo de estados de loading con debounce
 export const useLoadingState = (initialState = false, debounceMs = 300) => {
   const [isLoading, setIsLoading] = useState(initialState);
   const [debouncedLoading, setDebouncedLoading] = useState(initialState);
-
-  // Debounce del loading para evitar parpadeos
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedLoading(isLoading);
@@ -41,14 +38,13 @@ export const useLoadingState = (initialState = false, debounceMs = 300) => {
   };
 };
 
-// Custom hook para manejo de errores
 export const useErrorHandler = () => {
   const [error, setError] = useState<string | null>(null);
   const [errorHistory, setErrorHistory] = useState<string[]>([]);
 
   const handleError = useCallback((errorMessage: string) => {
     setError(errorMessage);
-    setErrorHistory(prev => [...prev.slice(-4), errorMessage]); // Mantener últimos 5 errores
+    setErrorHistory(prev => [...prev.slice(-4), errorMessage]);
   }, []);
 
   const clearError = useCallback(() => {
@@ -72,7 +68,6 @@ export const useErrorHandler = () => {
   };
 };
 
-// Custom hook para timeout de sesión
 export const useSessionTimeout = (timeoutMinutes = 30) => {
   const [timeLeft, setTimeLeft] = useState(timeoutMinutes * 60);
   const [isExpired, setIsExpired] = useState(false);

@@ -12,7 +12,8 @@ const Steps: React.FC<StepsProps> = ({ steps, currentStep, onGoBack }) => {
 
   return (
     <div className="steps-container">
-      <div className="steps-mobile">
+      
+      <div className="steps-mobile flex gap-4 lg:hidden">
         {onGoBack && (
           <button className="steps-mobile__back-button" onClick={onGoBack} aria-label="Retroceder">
             <img src={back} alt="back" />
@@ -32,7 +33,7 @@ const Steps: React.FC<StepsProps> = ({ steps, currentStep, onGoBack }) => {
         </div>
       </div>
       
-      <div className="steps-desktop">
+      <div className="steps-desktop hidden lg:flex">
         {steps.map((step, index) => (
           <React.Fragment key={step.number}>
             <div 

@@ -1,8 +1,6 @@
-// CustomFilledInput.scss - Metodología BEM
 .custom-filled-input {
   width: 100%;
 
-  // Contenedor principal del input
   &__container {
     background-color: transparent;
     border-radius: 8px;
@@ -15,7 +13,6 @@
     outline: none;
     transition: border-color 0.2s ease-in-out;
 
-    // Estados del contenedor
     &--focused {
       border-color: #5e6488;
     }
@@ -29,7 +26,6 @@
     }
   }
 
-  // Label flotante
   &__label {
     position: absolute;
     left: 12px;
@@ -43,7 +39,6 @@
     top: 50%;
     transform: translateY(-50%);
 
-    // Estados del label
     &--shrunk {
       top: 4px;
       transform: translateY(0);
@@ -61,7 +56,6 @@
     }
   }
 
-  // Input y Select base
   &__input,
   &__select {
     padding: 16px;
@@ -76,7 +70,6 @@
     color: #03050f;
     border-radius: 8px;
 
-    // Estilos específicos para webkit (autocompletado)
     &:-webkit-autofill,
     &:-webkit-autofill:hover,
     &:-webkit-autofill:focus,
@@ -87,25 +80,21 @@
     }
   }
 
-  // Select específico
   &__select {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
 
-    // Opciones del select
     option {
       background-color: white;
       color: #03050f;
     }
   }
 
-  // Input específico con label contraído
   &__input--shrunk {
     padding-top: 20px;
   }
 
-  // Icono de flecha para select
   &__arrow {
     position: absolute;
     right: 12px;
@@ -114,7 +103,6 @@
     pointer-events: none;
   }
 
-  // Texto de ayuda/error
   &__helper-text {
     color: #e53e3e;
     font-size: 12px;

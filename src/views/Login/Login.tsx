@@ -1,11 +1,12 @@
 import React from 'react';
 import './Login.scss';
 import { Footer, Header } from '../../components';
-
 import heroFamilyResponsive from '../../assets/images/logos/hero-family-responsive.svg';
 import heroFamily from '../../assets/images/logos/hero-family.svg';
 import RegistrationForm from './components/RegistrationForm/RegistrationForm';
 import { LoginProps } from './types';
+import bgLeft from '../../assets/images/background/bg-left.svg';
+import bgRight from '../../assets/images/background/bg-right.svg';
 
 const Login: React.FC<LoginProps> = ({ onNext }) => {
 
@@ -13,6 +14,7 @@ const Login: React.FC<LoginProps> = ({ onNext }) => {
     <>
       <Header></Header>
 
+      <img className='left-[-20%] lg:left-0 absolute -z-10' src={bgLeft} alt="" />
 
       <div className='max-w-7xl  mx-auto px-6  gap-3  lg:grid-cols-12 lg:grid'>
 
@@ -56,6 +58,7 @@ const Login: React.FC<LoginProps> = ({ onNext }) => {
         </div>
       </div>
 
+      <img className='top-[-50%]  lg:top-0 absolute right-0 -z-10' src={bgRight} alt="" />
 
       <Footer></Footer>
 

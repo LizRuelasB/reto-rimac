@@ -8,7 +8,6 @@ import React, {
 } from 'react';
 import { UserData, SelectedPlanData, DocumentType } from '../types';
 
-// Types
 export interface InitialFormData {
   documentType: DocumentType;
   documentNumber: string;
@@ -31,7 +30,6 @@ type RegistrationAction =
   | { type: 'RESET_REGISTRATION' };
 
 interface RegistrationContextType {
-  // Estructura nueva
   state: RegistrationState;
   actions: {
     setUserDataAndInitialForm: (userData: UserData, initialForm: InitialFormData) => void;
@@ -46,7 +44,6 @@ interface RegistrationContextType {
     registrationProgress: number;
   };
   
-  // Compatibilidad con código existente - acceso directo a propiedades
   userData: UserData | null;
   planData: SelectedPlanData | null;
   initialFormData: InitialFormData | null;
@@ -55,7 +52,6 @@ interface RegistrationContextType {
   resetRegistration: () => void;
 }
 
-// Reducer function
 const registrationReducer = (
   state: RegistrationState,
   action: RegistrationAction
@@ -98,7 +94,6 @@ const registrationReducer = (
   }
 };
 
-// Initial state
 const initialState: RegistrationState = {
   userData: null,
   planData: null,
@@ -107,19 +102,14 @@ const initialState: RegistrationState = {
   error: null,
 };
 
-// Context
 export const RegistrationContext = createContext<RegistrationContextType | undefined>(undefined);
 
-// Provider Props
 interface RegistrationProviderProps {
   children: ReactNode;
 }
 
-// Provider Component
 export const RegistrationProvider: React.FC<RegistrationProviderProps> = ({ children }) => {
   const [state, dispatch] = useReducer(registrationReducer, initialState);
-
-  // Actions using useCallback (outside of useMemo)
   const setUserDataAndInitialForm = useCallback((userData: UserData, initialForm: InitialFormData) => {
     dispatch({
       type: 'SET_USER_DATA_AND_FORM',
@@ -143,7 +133,6 @@ export const RegistrationProvider: React.FC<RegistrationProviderProps> = ({ chil
     dispatch({ type: 'RESET_REGISTRATION' });
   }, []);
 
-  // Memoized actions object
   const actions = useMemo(() => ({
     setUserDataAndInitialForm,
     setPlanData,
@@ -151,8 +140,6 @@ export const RegistrationProvider: React.FC<RegistrationProviderProps> = ({ chil
     setError,
     resetRegistration,
   }), [setUserDataAndInitialForm, setPlanData, setLoading, setError, resetRegistration]);
-
-  // Memoized computed values
   const computed = useMemo(() => ({
     isRegistrationComplete: Boolean(state.userData && state.planData),
     canProceedToPlans: Boolean(state.userData && state.initialFormData),
@@ -165,14 +152,11 @@ export const RegistrationProvider: React.FC<RegistrationProviderProps> = ({ chil
     })(),
   }), [state.userData, state.planData, state.initialFormData]);
 
-  // Memoized context value
   const contextValue = useMemo(() => ({
-    // Estructura nueva
     state,
     actions,
     computed,
     
-    // Compatibilidad con código existente
     userData: state.userData,
     planData: state.planData,
     initialFormData: state.initialFormData,
@@ -188,7 +172,6 @@ export const RegistrationProvider: React.FC<RegistrationProviderProps> = ({ chil
   );
 };
 
-// Base hook
 export const useRegistration = (): RegistrationContextType => {
   const context = useContext(RegistrationContext);
   if (context === undefined) {
@@ -197,7 +180,6 @@ export const useRegistration = (): RegistrationContextType => {
   return context;
 };
 
-// Custom hooks for specific functionality
 export const useRegistrationState = () => {
   const { state } = useRegistration();
   return state;
@@ -213,13 +195,11 @@ export const useRegistrationComputed = () => {
   return computed;
 };
 
-// Custom hook for user data with validation
 export const useUserData = () => {
   const { state, actions } = useRegistration();
   
   const setUserDataWithValidation = useCallback(
     (userData: UserData, initialForm: InitialFormData) => {
-      // Validation logic
       if (!userData.name || !userData.lastName) {
         actions.setError('Nombre y apellido son requeridos');
         return false;
@@ -244,16 +224,14 @@ export const useUserData = () => {
   };
 };
 
-// Custom hook for plan data with calculations
 export const usePlanData = () => {
   const { state, actions } = useRegistration();
   
   const setPlanWithCalculations = useCallback(
     (plan: SelectedPlanData) => {
-      // Apply discounts or calculations here
       const processedPlan = {
         ...plan,
-        finalPrice: plan.isForSomeoneElse ? plan.price * 0.95 : plan.price, // 5% discount for others
+        finalPrice: plan.isForSomeoneElse ? plan.price * 0.95 : plan.price,
       };
       
       actions.setPlanData(processedPlan);
@@ -268,7 +246,6 @@ export const usePlanData = () => {
   };
 };
 
-// Custom hook for registration flow control
 export const useRegistrationFlow = () => {
   const { state, actions, computed } = useRegistration();
   

@@ -19,7 +19,7 @@ const Summary: React.FC<SummaryProps> = ({onBack}) => {
     <>
      <Header />
       <div className='summary__steps'>
-        <Steps steps={REGISTRATION_STEPS} currentStep={STEP_NUMBERS.SUMMARY} />
+        <Steps onGoBack={onBack} steps={REGISTRATION_STEPS} currentStep={STEP_NUMBERS.SUMMARY} />
       </div>
 
 

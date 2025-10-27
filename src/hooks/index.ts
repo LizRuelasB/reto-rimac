@@ -1,10 +1,10 @@
-// Re-exportar todos los hooks personalizados
 export * from './useFormValidation';
 export * from './usePlanCalculations';
 export * from './useRegistrationPersistence';
 export * from './useUtilities';
+export * from './useUser';
+export * from './usePlans';
 
-// También re-exportar hooks del contexto
 export {
   useRegistration,
   useRegistrationState,

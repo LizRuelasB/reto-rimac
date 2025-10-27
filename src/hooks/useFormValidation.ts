@@ -1,7 +1,6 @@
 import { useState, useCallback, useMemo } from 'react';
 import { DocumentType } from '../types';
 
-// Custom hook para validación de formularios
 export const useFormValidation = () => {
   const [errors, setErrors] = useState<Record<string, string>>({});
 
