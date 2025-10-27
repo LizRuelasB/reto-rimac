@@ -1,12 +1,13 @@
 import React from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { RegistrationProvider, useRegistration } from './context/RegistrationContext';
-import Home from './views/Home/Home';
+import Login from './views/Login/Login';
 import Plans from './views/Plans/Plans';
 import Summary from './views/Summary/Summary';
+import './App.scss';
 
 const PATHS = {
-  HOME: '/',
+  LOGIN: '/',
   PLANS: '/planes',
   SUMMARY: '/resumen',
 };
@@ -17,22 +18,23 @@ const AppRouter: React.FC = () => {
 
   const navigateToPlans = () => navigate(PATHS.PLANS);
   const navigateToSummary = () => navigate(PATHS.SUMMARY);
-  const navigateToHome = () => {
+  const navigateToLogin = () => {
     resetRegistration();
-    navigate(PATHS.HOME);
+    navigate(PATHS.LOGIN);
   };
 
   return (
     <Routes>
-      <Route path={PATHS.HOME} element={<Home onNext={navigateToPlans} />} />
+      
+      <Route path={PATHS.LOGIN} element={<Login onNext={navigateToPlans} />} />
 
       <Route 
         path={PATHS.PLANS} 
         element={
           userData ? (
-            <Plans onNext={navigateToSummary} onBack={navigateToHome} />
+            <Plans onNext={navigateToSummary} onBack={navigateToLogin} />
           ) : (
-            <Home onNext={navigateToPlans} />
+            <Login onNext={navigateToPlans} />
           )
         } 
       />
@@ -43,12 +45,12 @@ const AppRouter: React.FC = () => {
           userData && planData ? (
             <Summary onBack={navigateToPlans} />
           ) : (
-            <Home onNext={navigateToPlans} />
+            <Login onNext={navigateToPlans} />
           )
         } 
       />
 
-      <Route path="*" element={<Home onNext={navigateToPlans} />} />
+      <Route path="*" element={<Login onNext={navigateToPlans} />} />
     </Routes>
   );
 };

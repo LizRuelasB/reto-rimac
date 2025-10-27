@@ -1,0 +1,50 @@
+
+.login {
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: center;
+
+    @screen lg {
+      max-width: 352px;
+    }
+
+    &__title {
+      font-size: 28px;
+      line-height: 36px;
+      font-family: 'BRSonoma-Bold', sans-serif;
+      padding-top: 8px;
+      @screen lg {
+        font-size: 32px;
+        line-height: 40px;
+        padding: 16px 0px 8px 0px;
+      }
+    }
+
+
+    &__description {
+      font-family: BRSonoma-SemiBold, sans-serif;
+      line-height: 20px;
+      margin-bottom: 24px;
+    }
+
+
+  }
+
+  &__form {
+
+    @screen lg {
+      max-width: 352px;
+    }
+  }
+
+  &__separator {
+      width: 100%;
+      border-bottom: 1px solid #CCD1EE;
+
+      @screen lg { 
+        display: none;
+      }
+    }
+}

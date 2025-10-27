@@ -21,9 +21,15 @@
     font-size: 14px;
     color: #0A051E;
     user-select: none;
-    padding-left: 36px;
+    padding-left: 32px;
     min-height: 20px;
     letter-spacing: 0.1px;
+
+
+    @screen lg {
+      font-size: 12px;
+
+    }
 
     &::before {
       content: '';
@@ -84,6 +90,7 @@
     font-size: 12px;
     color: #03050F;
     font-family: BRSonoma-SemiBold, sans-serif;
+    text-decoration: underline;
   }
 
   &__error-message {
@@ -95,5 +102,9 @@
     border: 1px solid #ffb3b8;
     border-radius: 4px;
     text-align: center;
+  }
+
+  &__checkbox__input.input--error + &__checkbox__label::before {
+    border-color: #E53E3E;
   }
 }

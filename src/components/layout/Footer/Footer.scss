@@ -1,44 +1,25 @@
-@mixin desktop {
-  @media (min-width: 768px) {
-    @content;
-  }
-}
 
 .footer {
   background-color: #03050F;
-  height: 152px;
-  color: #F8F9FF;
-  display: flex;
-  @include desktop {
-    height: 106px;
 
-  }
+  color: #F8F9FF;
+
 
   &__content {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    margin: auto;
     gap: 24px;
 
     padding: 0px 24px;
 
-    @include desktop {
-      max-width: 1176px;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      padding: 0px;
-      
-    }
 
     &__separator {
       width: 100%;
       border-bottom: 1px solid #2B304E;
 
-      @include desktop { 
+      @screen lg { 
         display: none;
       }
     }

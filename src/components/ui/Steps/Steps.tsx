@@ -1,17 +1,8 @@
 import React from 'react';
 import './Steps.scss';
-import back from '../../../assets/images/icons/icon-back-gray.svg';
-
-export interface Step {
-  number: number;
-  label: string;
-}
-
-interface StepsProps {
-  steps: Step[];
-  currentStep: number;
-  onGoBack?: () => void;
-}
+import back from '../../../assets/icons/icon-back-gray.svg';
+import { StepsProps } from './types';
+export type { Step } from './types';
 
 const Steps: React.FC<StepsProps> = ({ steps, currentStep, onGoBack }) => {
 

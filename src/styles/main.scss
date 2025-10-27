@@ -16,6 +16,8 @@ body {
 
 $tag-gradient-start: #00F4E2;
 $tag-gradient-end: #00FF7F;
+
+
 .tag {
   display: inline-block;
   padding: 2px 8px;
@@ -25,12 +27,13 @@ $tag-gradient-end: #00FF7F;
   color: #03050F;
   font-size: 12px;
   line-height: 16px;
-
-
-
-  @media (min-width: 768px) {
+  @screen lg {
     font-size: 14px;
     padding: 4px 8px;
   }
 }
 
+b, strong {
+  font-weight: 700;
+  font-family: 'BRSonoma-Bold', sans-serif;
+}

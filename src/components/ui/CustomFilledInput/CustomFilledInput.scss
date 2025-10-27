@@ -1,0 +1,126 @@
+// CustomFilledInput.scss - Metodología BEM
+.custom-filled-input {
+  width: 100%;
+
+  // Contenedor principal del input
+  &__container {
+    background-color: transparent;
+    border-radius: 8px;
+    border: 1px solid #5e6488;
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    box-shadow: none;
+    outline: none;
+    transition: border-color 0.2s ease-in-out;
+
+    // Estados del contenedor
+    &--focused {
+      border-color: #5e6488;
+    }
+
+    &--invalid {
+      border-color: #e53e3e;
+    }
+
+    &--no-right-border {
+      border-right: none;
+    }
+  }
+
+  // Label flotante
+  &__label {
+    position: absolute;
+    left: 12px;
+    pointer-events: none;
+    transition: all 0.2s ease-out;
+    color: #03050f;
+    font-size: 16px;
+    padding: 0;
+    z-index: 1;
+    background-color: transparent;
+    top: 50%;
+    transform: translateY(-50%);
+
+    // Estados del label
+    &--shrunk {
+      top: 4px;
+      transform: translateY(0);
+      font-size: 12px;
+      padding: 0 4px;
+      background-color: white;
+    }
+
+    &--focused {
+      color: #5e6488;
+    }
+
+    &--invalid {
+      color: #e53e3e;
+    }
+  }
+
+  // Input y Select base
+  &__input,
+  &__select {
+    padding: 16px;
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    box-sizing: border-box;
+    font-size: 16px;
+    font-family: 'BRSonoma-Regular';
+    height: 56px;
+    color: #03050f;
+    border-radius: 8px;
+
+    // Estilos específicos para webkit (autocompletado)
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0px 1000px white inset;
+      transition: background-color 5000s ease-in-out 0s;
+      -webkit-text-fill-color: #03050f;
+    }
+  }
+
+  // Select específico
+  &__select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    // Opciones del select
+    option {
+      background-color: white;
+      color: #03050f;
+    }
+  }
+
+  // Input específico con label contraído
+  &__input--shrunk {
+    padding-top: 20px;
+  }
+
+  // Icono de flecha para select
+  &__arrow {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  // Texto de ayuda/error
+  &__helper-text {
+    color: #e53e3e;
+    font-size: 12px;
+    margin-top: 4px;
+    margin-bottom: 8px;
+    font-weight: bold;
+    padding-left: 12px;
+  }
+}

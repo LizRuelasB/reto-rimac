@@ -3,21 +3,15 @@ import { Header, Steps } from '../../components';
 import { REGISTRATION_STEPS, STEP_NUMBERS } from '../../constants/steps';
 import './Plans.scss';
 
-import protection from '../../assets/images/icons/icon-protection.svg';
-import user from '../../assets/images/icons/icon-add-user.svg';
+import protection from '../../assets/icons/icon-protection.svg';
+import user from '../../assets/icons/icon-add-user.svg';
 import { Plan, SelectedPlanData } from '../../types';
 import { useRegistration } from '../../context/RegistrationContext';
 
-import home from '../../assets/images/icons/icon-home.svg';
-import clinic from '../../assets/images/icons/icon-clinic.svg';
-import back from '../../assets/images/icons/icon-back.svg';
-
-interface PlansProps {
-  onNext: () => void;
-  onBack: () => void;
-}
-
-type CoverageType = 'forMe' | 'forSomeoneElse' | null;
+import home from '../../assets/icons/icon-home.svg';
+import clinic from '../../assets/icons/icon-clinic.svg';
+import back from '../../assets/icons/icon-back.svg';
+import { PlansProps, CoverageType } from './types';
 
 const Plans: React.FC<PlansProps> = ({ onBack, onNext }) => {
 
@@ -76,6 +70,28 @@ const Plans: React.FC<PlansProps> = ({ onBack, onNext }) => {
     return price;
   };
 
+  const formatTextWithBoldString = (text: string, boldString: string) => {
+    if (!boldString || boldString.trim() === '') return text;
+
+    const lowerText = text.toLowerCase();
+    const lowerBoldString = boldString.toLowerCase();
+    const startIndex = lowerText.indexOf(lowerBoldString);
+
+    if (startIndex === -1) return text;
+
+    const beforeBold = text.substring(0, startIndex);
+    const boldPart = text.substring(startIndex, startIndex + boldString.length);
+    const afterBold = text.substring(startIndex + boldString.length);
+
+    return (
+      <>
+        {beforeBold}
+        <b>{boldPart}</b>
+        {afterBold}
+      </>
+    );
+  };
+
   const handlePlanSelect = (plan: Plan) => {
     if (!selectedCoverage || !userData) return;
 
@@ -100,32 +116,28 @@ const Plans: React.FC<PlansProps> = ({ onBack, onNext }) => {
         <Steps onGoBack={onBack} steps={REGISTRATION_STEPS} currentStep={STEP_NUMBERS.PLANS} />
       </div>
 
-    <div className="plans">
+    <div className="plans max-w-7xl mx-auto px-6 pt-8 items-center lg:pt-10">
       
-
-      <div className="rimac-grid rimac-grid--desktop">
-        <div className="plans__link rimac-grid__item--desktop-2">
-          <button
-            type="button"
-            onClick={onBack}
-            className="plans__link__button"
-          >
-            <img src={back} alt="" /> Volver
-          </button>
-        </div>
+      <div className="plans__link hidden lg:block pb-14">
+        <button
+          type="button"
+          onClick={onBack}
+          className="plans__link__button"
+        >
+          <img src={back} alt="" /> Volver
+        </button>
       </div>
 
-      <div className="rimac-grid rimac-grid--desktop">
-        <div className='rimac-grid__item--desktop-12'>
-          <div className='plans__content'>
-            <h1 className="plans__content__title">
+
+      <div className="plans__content">
+            <h1 className="plans__content__title lg:text-center">
               {userData?.name} ¿Para quién deseas cotizar?
             </h1>
-            <p className="plans__content__subtitle">
+            <p className="plans__content__subtitle lg:text-center">
               Selecciona la opción que se ajuste más a tus necesidades.
             </p>
 
-            <div className="plans__content__cards">
+            <div className="plans__content__cards grid gap-8 lg:grid-cols-2">
 
               <div className="plans__content__cards__item">
                 <input
@@ -174,11 +186,94 @@ const Plans: React.FC<PlansProps> = ({ onBack, onNext }) => {
 
             </div>
           </div>
+
+
+
+
+      <div className='max-w-7xl px-6' >
+
+      
+        <div className='plans__cards'>
+          {filteredPlans.map((plan, index) => (
+            <div
+              key={index}
+              className="plans__cards__plan-card"
+            >
+              <div className='plans__cards__plan-card__head'>
+                <div>
+                  <div className="plans__cards__plan-card__header">
+                    <h3>{plan.name}</h3>
+                  </div>
+
+                  <div className="plans__cards__plan-card__price">
+                    <span className="plans__cards__plan-card__price__text">
+                      Costo del plan
+                      </span>
+                    {selectedCoverage === 'forSomeoneElse' && (
+                      <span className="plans__cards__plan-card__price--original">
+                        ${plan.price} antes
+                      </span>
+                    )}
+                    <div>
+                      <span className="plans__cards__plan-card__price--final">
+                        ${getDiscountedPrice(plan.price)} al mes
+                      </span>
+
+                    </div>
+                  </div>
+
+                </div>
+
+                <div>
+                  <img src={ plan.name.includes('Clínica') ? clinic : home} alt="icon" />
+                </div>
+              </div>
+
+
+
+              <ul className="plans__cards__plan-card__features">
+                {plan.description.map((desc, idx) => {
+                  const planConfigs: Record<string, string[]> = {
+                    'Plan en Casa': [
+                      'Médico general a domicilio', 
+                      'Videoconsulta', 
+                      'Indemnización '
+                    ],
+                    'Plan en Casa y Clínica': [
+                      'Consultas en clínica', 
+                      'Medicinas y exámenes', 
+                      'más de 200 clínicas del país.', 
+                    ],
+                    'Plan en Casa + Chequeo ': [
+                      'Un Chequeo preventivo general',
+                      'Vacunas', 
+                      'Incluye todos los beneficios del Plan en Casa.'
+                    ],
+                  };
+                  
+                  const planBoldConfig = planConfigs[plan.name] || [];
+                  const boldString = planBoldConfig[idx] || '';
+                  
+                  return (
+                    <li key={idx}>
+                      {formatTextWithBoldString(desc, boldString)}
+                    </li>
+                  );
+                })}
+              </ul>
+
+              <button
+                className="plans__cards__plan-card__button"
+                type="button"
+                onClick={() => handlePlanSelect(plan)}
+              >
+                Seleccionar Plan
+              </button>
+            </div>
+          ))}
         </div>
-      </div>
-
-
-      <div className="rimac-grid rimac-grid--desktop">
+  
+        
 
         {loading && (
           <div className="plans__loading">
@@ -186,72 +281,7 @@ const Plans: React.FC<PlansProps> = ({ onBack, onNext }) => {
           </div>
         )}
 
-        <div className="rimac-grid__item--desktop-2-12">
-          <div className='plans__cards'>
-            {filteredPlans.map((plan, index) => (
-              <div
-                key={index}
-                className="plans__cards__plan-card"
-              >
-
-
-                <div style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  gap: '16px',
-                  borderBottom: '1px solid #D7DBF5',
-                  paddingBottom: '24px'
-                }}>
-                  <div>
-                    <div className="plans__cards__plan-card__header">
-                      <h3>{plan.name}</h3>
-                    </div>
-
-                    <div className="plans__cards__plan-card__price">
-                      <span className="plans__cards__plan-card__price__text">
-                        Costo del plan
-                        </span>
-                      {selectedCoverage === 'forSomeoneElse' && (
-                        <span className="plans__cards__plan-card__price--original">
-                          ${plan.price} antes
-                        </span>
-                      )}
-                      <div>
-                        <span className="plans__cards__plan-card__price--final">
-                          ${getDiscountedPrice(plan.price)} al mes
-                        </span>
-
-                      </div>
-                    </div>
-
-                  </div>
-
-                  <div>
-                    <img src={ plan.name.includes('Clínica') ? clinic : home} alt="icon" />
-                  </div>
-                </div>
-
-
-
-                <ul className="plans__cards__plan-card__features">
-                  {plan.description.map((desc, idx) => (
-                    <li key={idx}>{desc}</li>
-                  ))}
-                </ul>
-
-                <button
-                  className="plans__cards__plan-card__button"
-                  type="button"
-                  onClick={() => handlePlanSelect(plan)}
-                >
-                  Seleccionar Plan
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-
-      </div>
+      </div> 
     </div>
     </>
   );

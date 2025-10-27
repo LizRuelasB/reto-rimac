@@ -4,13 +4,9 @@ import { REGISTRATION_STEPS, STEP_NUMBERS } from '../../constants/steps';
 import './Summary.scss'
 import { useRegistration } from '../../context/RegistrationContext';
 
-
-import family from '../../assets/images/icons/icon-family.svg';
-import back from '../../assets/images/icons/icon-back.svg';
-
-interface SummaryProps {
-  onBack: () => void;
-}
+import family from '../../assets/icons/icon-family.svg';
+import back from '../../assets/icons/icon-back.svg';
+import { SummaryProps } from './types';
 
 const Summary: React.FC<SummaryProps> = ({onBack}) => {
   const { userData, planData, initialFormData } = useRegistration();

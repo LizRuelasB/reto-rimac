@@ -1,37 +1,13 @@
-$color-primary: #4F4FFF;
-$color-text: #141938;
-$color-border-default: #ccc;
-
-@mixin desktop {
-  @media (min-width: 768px) {
-    @content;
-  }
-}
 
 .plans {
-    padding: 32px 24px;
-
-
-   @include desktop {
-      padding: 40px 0px;
-    }
 
   &__link {
 
-
-    display: none;
-
-
-    @include desktop {
-      padding: 0px 24px;
-      padding-bottom: 56px;
-    }
-
-
+    
     &__button {
       border: none;
       background-color: transparent;
-      color: $color-primary;
+      color: #4F4FFF;
       font-size: 18px;
       font-family: BRSonoma-SemiBold, sans-serif;
       cursor: pointer;
@@ -42,25 +18,23 @@ $color-border-default: #ccc;
   }
 
   &__content {
-    max-width: 650px;
+    max-width: 544px;
     margin: auto;
 
     &__title {
-      color: $color-text;
+      color: #141938;
       font-size: 28px;
       font-family: BRSonoma-SemiBold, sans-serif;
       line-height: 36px;
       letter-spacing: -0.2px;
-
       margin-bottom: 8px;
-      text-align: start;
+     
 
-      @include desktop {
-      font-size: 42px;
-      letter-spacing: -0.6px;
-      line-height: 48px;
-      text-align: center;
-    }
+      @screen lg {
+        font-size: 42px;
+        letter-spacing: -0.6px;
+        line-height: 48px;
+      }
     }
 
     &__subtitle {
@@ -69,26 +43,16 @@ $color-border-default: #ccc;
       
       line-height: 28px;
       letter-spacing: 0.1px;
-      color: $color-text;
+      color: #141938;
       text-align: start;
 
-       @include desktop {
-      font-size: 16px;
-      text-align: center;
-    }
+       @screen lg {
+        font-size: 16px;
+      }
 
     }
 
     &__cards {
-      display: flex;
-      justify-content: center;
-      flex-direction: column;
-      align-items: center;
-      gap: 32px;
-
-      @include desktop {
-        flex-direction: row;
-      }
 
 
       &__item {
@@ -110,9 +74,6 @@ $color-border-default: #ccc;
         cursor: pointer;
         transition: all 0.3s ease;
         position: relative;
-        width: 100%;
-        min-height: 212px;
-        max-width: 255px;
         box-shadow: 0px 1px 32px 0px #AEACF359;
 
 
@@ -131,14 +92,14 @@ $color-border-default: #ccc;
           font-family: BRSonoma-SemiBold, sans-serif;
           display: block;
           padding: 8px 0px;
-          color: $color-text;
+          color: #141938;
         }
 
         &__description {
           font-size: 12px;
           line-height: 20px;
           letter-spacing: 0.2px;
-          color: $color-text;
+          color: #141938;
         }
 
         &__circle {
@@ -176,18 +137,28 @@ $color-border-default: #ccc;
   }
 
   &__cards {
-    margin-top: 20px;
+    padding-top: 40px;
     display: flex;
     gap: 32px;
     width: 100%;
     overflow-x: auto;
     padding-bottom: 16px;
+    scroll-snap-type: x mandatory;
+    
+    @screen lg {
+      padding-top: 20px;
+    }
+
+    &::before,
+    &::after {
+      content: '';
+      flex: 1;
+      min-width: 0;
+    }
 
     &__plan-card {
       background: white;
-      box-shadow: 0px 1px 24px 0px #AEACF359;
-      box-shadow: 0px 1px 24px 0px #AEACF359;
-
+      box-shadow: 0px 1px 32px 0px #AEACF359;
       border-radius: 16px;
       padding: 68px 32px 24px 32px;
       cursor: pointer;
@@ -198,13 +169,14 @@ $color-border-default: #ccc;
       width: 288px;
       height: 687px;
       flex-shrink: 0;
+      scroll-snap-align: center;
 
-
-
-      &:hover {
-        border-color: #4f4fff;
-        box-shadow: 0 8px 24px rgba(79, 79, 255, 0.15);
-        transform: translateY(-4px);
+      &__head {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        border-bottom: 1px solid #D7DBF5;
+        padding-bottom: 24px
       }
 
       &__header {
