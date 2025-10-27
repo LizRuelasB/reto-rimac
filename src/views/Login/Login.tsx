@@ -11,12 +11,13 @@ import bgRight from '../../assets/images/background/bg-right.svg';
 const Login: React.FC<LoginProps> = ({ onNext }) => {
 
   return (
-    <>
+    <div className='relative min-h-screen flex flex-col'>
+      <img className='absolute bottom-0 left-0 -z-10 w-auto h-auto' src={bgLeft} alt="" />
       <Header></Header>
 
-      <img className='absolute -bottom-[50%] lg:bottom-auto -z-10' src={bgLeft} alt="" />
+      
 
-      <div className='max-w-7xl  mx-auto px-6  gap-3  lg:grid-cols-12 lg:grid pb-[64px]'>
+      <div className='max-w-7xl mx-auto px-6 gap-3 lg:grid-cols-12 lg:grid pb-[64px] flex-grow'>
 
 
         <div className='hidden lg:block lg:col-span-6 lg:py-8'>
@@ -62,7 +63,7 @@ const Login: React.FC<LoginProps> = ({ onNext }) => {
 
       <Footer></Footer>
 
-    </>
+    </div>
   )
 }
 
