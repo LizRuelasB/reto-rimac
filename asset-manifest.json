@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/reto-rimac/static/css/main.cafc968a.css",
-    "main.js": "/reto-rimac/static/js/main.9fd99eca.js",
+    "main.css": "/reto-rimac/static/css/main.79729543.css",
+    "main.js": "/reto-rimac/static/js/main.3629c08d.js",
     "static/media/hero-family-responsive.svg": "/reto-rimac/static/media/hero-family-responsive.1a9ffc8b981c59af88f0727ced3b0b3e.svg",
     "static/media/hero-family.svg": "/reto-rimac/static/media/hero-family.24631fdf9d3eaf2a945639ae551022c7.svg",
     "static/media/brsonoma-semibold.woff": "/reto-rimac/static/media/brsonoma-semibold.ef34ca818c81989b4b57.woff",
@@ -24,11 +24,11 @@
     "static/media/icon-back-gray.svg": "/reto-rimac/static/media/icon-back-gray.7e0416442e16b9c463089451b73a3905.svg",
     "static/media/icon-back.svg": "/reto-rimac/static/media/icon-back.753d18eb51bbc34abc9fa5cc139a3373.svg",
     "static/media/icon-arrow.svg": "/reto-rimac/static/media/icon-arrow.4b7a519ad6fdcf1db4864bfb26621b80.svg",
-    "main.cafc968a.css.map": "/reto-rimac/static/css/main.cafc968a.css.map",
-    "main.9fd99eca.js.map": "/reto-rimac/static/js/main.9fd99eca.js.map"
+    "main.79729543.css.map": "/reto-rimac/static/css/main.79729543.css.map",
+    "main.3629c08d.js.map": "/reto-rimac/static/js/main.3629c08d.js.map"
   },
   "entrypoints": [
-    "static/css/main.cafc968a.css",
-    "static/js/main.9fd99eca.js"
+    "static/css/main.79729543.css",
+    "static/js/main.3629c08d.js"
   ]
 }
