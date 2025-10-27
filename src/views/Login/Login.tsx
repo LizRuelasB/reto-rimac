@@ -14,9 +14,9 @@ const Login: React.FC<LoginProps> = ({ onNext }) => {
     <>
       <Header></Header>
 
-      <img className='left-[-20%] lg:left-0 absolute -z-10' src={bgLeft} alt="" />
+      <img className='absolute -bottom-[50%] lg:bottom-auto -z-10' src={bgLeft} alt="" />
 
-      <div className='max-w-7xl  mx-auto px-6  gap-3  lg:grid-cols-12 lg:grid'>
+      <div className='max-w-7xl  mx-auto px-6  gap-3  lg:grid-cols-12 lg:grid pb-[64px]'>
 
 
         <div className='hidden lg:block lg:col-span-6 lg:py-8'>
@@ -58,7 +58,7 @@ const Login: React.FC<LoginProps> = ({ onNext }) => {
         </div>
       </div>
 
-      <img className='top-[-50%]  lg:top-0 absolute right-0 -z-10' src={bgRight} alt="" />
+      <img className='absolute -top-[50%] lg:top-0 right-0 -z-10' src={bgRight} alt="" />
 
       <Footer></Footer>
 

@@ -7,7 +7,7 @@ import './Footer.scss'
 const Footer: React.FC = () => {
   return (
 
-    <footer className="footer py-8 mt-[64px]">
+    <footer className="footer py-8 ">
 
       <div className="footer__content
         max-w-7xl mx-auto
